@@ -11,7 +11,7 @@ export function createStoreFactory(...middlewares: Middleware[]) {
     ): any => {
       throw new Error(
         `Dispatching while constructing your middleware is not allowed. ` +
-          `Other middleware would not be applied to this dispatch.`,
+          `Other middleware would not be applied to this dispatch.\n action: ${action}`,
       )
     }
 

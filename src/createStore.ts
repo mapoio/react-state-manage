@@ -12,22 +12,8 @@ import {
   ReducerFn,
   ActionSelector,
   Updater,
-  Config,
   Action,
 } from './typings'
-
-let config: Config = {
-  graphql: {
-    endpoint: '',
-    headers: {},
-  },
-}
-
-const reactStateManage = {
-  init: (initConfig: Config) => {
-    config = initConfig
-  },
-}
 
 function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) {
   let storeState: S = opt.state
@@ -92,5 +78,5 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
   return { useStore, dispatch, getState }
 }
 
-export default reactStateManage
+export default createStore
 export { createStore }
