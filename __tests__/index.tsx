@@ -1,10 +1,11 @@
 // import React from 'react'
 // import renderer from 'react-test-renderer'
-import { createStore, createStoreFactory, Middleware, ActionPayload } from '../src/index'
+import { createStoreFactory, Middleware, ActionPayload } from '../src/index'
 
 test('useStore', () => {
   const middlewareA: Middleware = store => next => action => {
     console.log('start')
+    console.log(store)
     next(action)
     console.log('end')
   }
