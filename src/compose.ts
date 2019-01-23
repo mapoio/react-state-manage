@@ -1,6 +1,6 @@
 export default function compose(...funcs: Array<(...args: any) => any>) {
   if (funcs.length === 0) {
-    return (...args: any) => args
+    return (args: any) => args
   }
 
   if (funcs.length === 1) {
