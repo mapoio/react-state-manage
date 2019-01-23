@@ -43,6 +43,10 @@ test('useStore', () => {
     },
   })
 
+  dispatch({
+    type: 'decrement',
+  })
+
   function sleep(time: number) {
     return new Promise(resove => {
       setTimeout(() => {

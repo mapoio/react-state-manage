@@ -6,15 +6,9 @@ import { Opt, Reducers, Effects, ActionSelector, Middleware, ActionType, Action 
 export function createStoreFactory(...middlewares: Middleware[]) {
   return <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) => {
     const store = createStore(opt)
-    let dispatch = <K extends any>(
+    let dispatch: <K extends any>(
       action: Action<keyof (R & E) | ActionSelector<R, E>, K, any>,
-    ): any => {
-      throw new Error(
-        `Dispatching while constructing your middleware is not allowed. ` +
-          `Other middleware would not be applied to this dispatch.\n action: ${action}`,
-      )
-    }
-
+    ) => any
     const middlewareAPI = {
       getState: store.getState,
       dispatch: (action: ActionType) => dispatch(action),
