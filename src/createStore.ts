@@ -39,8 +39,7 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     if (opt.effects && opt.effects[actionName]) {
       return opt.effects[actionName](action)
     }
-    if (!currentListeners.length) return
-    if (opt.reducers) {
+    if (opt.reducers && typeof opt.reducers[actionName] === 'function') {
       try {
         isDispatching = true
         const nextState: S = produce<any>(storeState, (draft: S) => {
@@ -50,11 +49,11 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       } finally {
         isDispatching = false
       }
+      const listeners = (currentListeners = nextListeners)
+      listeners.forEach(listener => {
+        listener()
+      })
     }
-    const listeners = (currentListeners = nextListeners)
-    listeners.forEach(listener => {
-      listener()
-    })
   }
 
   function getState(): S {

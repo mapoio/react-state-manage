@@ -19,7 +19,8 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "preserve",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "sourceMap": true
   },
   "include": ["src"],
 

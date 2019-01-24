@@ -7,6 +7,7 @@ test('useStore', () => {
     console.log(store)
     next(action)
     console.log('end')
+    console.log(store.getState())
   }
 
   const StoreFactory = createStoreFactory(middlewareA)

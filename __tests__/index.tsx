@@ -13,7 +13,7 @@ test('useStore', () => {
 
   const StoreFactory = createStoreFactory(middlewareA)
 
-  const { dispatch } = StoreFactory({
+  const { dispatch, getState } = StoreFactory({
     state: {
       count: 10,
       name: 'Counter',
@@ -49,8 +49,10 @@ test('useStore', () => {
   })
 
   dispatch({
-    type: 'decrement',
+    type: 'increment',
   })
+
+  console.log(getState())
 
   function sleep(time: number) {
     return new Promise(resove => {
