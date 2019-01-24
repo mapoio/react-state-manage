@@ -1,5 +1,5 @@
 import compose from './compose'
-import { createStore } from './createStore'
+import { createHooksStore } from './createHooksStore'
 
 import {
   Opt,
@@ -12,9 +12,9 @@ import {
   Func,
 } from './typings'
 
-export default function createStoreFactory(...middlewares: Middleware[]) {
+export default function createHooksStoreFactory(...middlewares: Middleware[]) {
   return <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) => {
-    const store = createStore(opt)
+    const store = createHooksStore(opt)
     let dispatch: <K extends any>(
       action: Action<keyof (R & E) | ActionSelector<R, E>, K, any> | object | Func,
     ) => any
@@ -29,4 +29,4 @@ export default function createStoreFactory(...middlewares: Middleware[]) {
   }
 }
 
-export { createStoreFactory }
+export { createHooksStoreFactory }

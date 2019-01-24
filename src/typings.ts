@@ -61,11 +61,13 @@ export interface Config {
   }
 }
 
+export type Func = (...args: any) => any
+
 export interface Store {
   getState: () => any
-  dispatch: (action: ActionType) => any
+  dispatch: (action: ActionType | Func | object) => any
 }
 
-export type Next<K> = (next: ActFn<K>) => (action: ActionType) => any
+export type Next<K> = (next: ActFn<K>) => (action: ActionType | Func | object) => any
 
 export type Middleware = (store: Store) => Next<any>

@@ -1,5 +1,3 @@
-// import React from 'react'
-// import renderer from 'react-test-renderer'
 import { createStoreFactory } from '../src/index'
 import { Middleware, ActionPayload } from '../src/typings'
 

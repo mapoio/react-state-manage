@@ -9,3 +9,5 @@ export default function compose(...funcs: Array<(...args: any) => any>) {
 
   return funcs.reduce((a, b) => (...args) => a(b(...args)))
 }
+
+export { compose }

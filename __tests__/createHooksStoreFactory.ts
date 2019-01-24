@@ -1,6 +1,4 @@
-// import React from 'react'
-// import renderer from 'react-test-renderer'
-import { createStoreFactory } from '../src/index'
+import { createHooksStoreFactory } from '../src/index'
 import { Middleware, ActionPayload } from '../src/typings'
 
 test('useStore', () => {
@@ -11,9 +9,9 @@ test('useStore', () => {
     console.log('end')
   }
 
-  const StoreFactory = createStoreFactory(middlewareA)
+  const StoreFactory = createHooksStoreFactory(middlewareA)
 
-  const { dispatch } = StoreFactory({
+  const { dispatch, useStore } = StoreFactory({
     state: {
       count: 10,
       name: 'Counter',
@@ -60,6 +58,7 @@ test('useStore', () => {
     })
   }
 
+  console.log(useStore)
   // const App = () => {
   //   const count = useStore(S => S.count)
   //   console.log('coutn:------------------', count)

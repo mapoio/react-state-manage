@@ -1,13 +1,7 @@
 import { createStore } from './createStore'
 import { createStoreFactory } from './createStoreFactory'
-import { Middleware, ActionPayload, ActionMeta, ActionType, ActionPayloadMeta } from './typings'
+import { createHooksStore } from './createHooksStore'
+import { createHooksStoreFactory } from './createHooksStoreFactory'
+import { compose } from './compose'
 
-export {
-  createStore,
-  createStoreFactory,
-  Middleware,
-  ActionPayload,
-  ActionMeta,
-  ActionType,
-  ActionPayloadMeta,
-}
+export { compose, createStore, createStoreFactory, createHooksStore, createHooksStoreFactory }
