@@ -1,6 +1,6 @@
 {
   "name": "react-state-manage",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -44,7 +44,9 @@
     "testMatch": [
       "**/__tests__/*.(ts|tsx)"
     ],
-    "setupFiles": ["./jest.setup.js"],
+    "setupFiles": [
+      "./jest.setup.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/examples/",

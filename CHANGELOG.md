@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/mapoio/react-state-manage/compare/v2.1.1...v2.1.2) (2019-01-25)
+
+
+### Bug Fixes
+
+* test case ([1a510e7](https://github.com/mapoio/react-state-manage/commit/1a510e7))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/mapoio/react-state-manage/compare/v2.1.0...v2.1.1) (2019-01-24)
 
