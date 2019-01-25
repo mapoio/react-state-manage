@@ -1,3 +1,5 @@
+// import React from 'react'
+// import renderer from 'react-test-renderer'
 import { createHooksStoreFactory } from '../src/index'
 import { Middleware, ActionPayload } from '../src/typings'
 
@@ -62,8 +64,8 @@ test('useStore', () => {
   // const App = () => {
   //   const count = useStore(S => S.count)
   //   console.log('coutn:------------------', count)
-  //   // return <div>{count}</div>
-  //   return <span>..</span>
+  //   return <div>{count}</div>
+  //   // return <span>..</span>
   // }
 
   // console.log(<App />)

@@ -12,7 +12,7 @@ test('useStore', () => {
 
   const StoreFactory = createStoreFactory(middlewareA)
 
-  const { dispatch } = StoreFactory({
+  const { dispatch, subscribe, getState } = StoreFactory({
     state: {
       count: 10,
       name: 'Counter',
@@ -58,6 +58,19 @@ test('useStore', () => {
       }, time)
     })
   }
+
+  const listener = () => {
+    console.log(getState())
+  }
+
+  const unSub = subscribe(listener)
+
+  dispatch({
+    type: 'increment',
+    payload: 1,
+  })
+
+  console.log(unSub())
 
   // const App = () => {
   //   const count = useStore(S => S.count)

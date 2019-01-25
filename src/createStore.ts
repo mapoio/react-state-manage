@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import produce from 'immer'
 // import equal from 'fast-deep-equal'
 
@@ -104,14 +103,6 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     }
   }
 
-  function replaceReducer(nextReducer: R) {
-    if (typeof nextReducer === 'function') {
-      throw new Error('Expected the nextReducer to be a function array.')
-    }
-    opt.reducers = nextReducer
-    dispatch({ type: ActionTypes.REPLACE })
-  }
-
   function observable() {
     const outerSubscribe = subscribe
     return {
@@ -143,7 +134,6 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     dispatch,
     subscribe,
     getState,
-    replaceReducer,
     [Symbol.observable]: observable,
   }
 }

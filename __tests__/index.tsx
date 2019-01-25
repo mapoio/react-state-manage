@@ -1,6 +1,7 @@
-// import React from 'react'
-// import renderer from 'react-test-renderer'
-import { createStoreFactory } from '../src/index'
+import React from 'react'
+import renderer from 'react-test-renderer'
+// import { shallow } from 'enzyme'
+import { createHooksStoreFactory } from '../src/index'
 import { Middleware, ActionPayload } from '../src/typings'
 
 test('useStore', () => {
@@ -11,9 +12,9 @@ test('useStore', () => {
     console.log('end')
   }
 
-  const StoreFactory = createStoreFactory(middlewareA)
+  const StoreFactory = createHooksStoreFactory(middlewareA)
 
-  const { dispatch, getState } = StoreFactory({
+  const { dispatch, useStore } = StoreFactory({
     state: {
       count: 10,
       name: 'Counter',
@@ -49,10 +50,8 @@ test('useStore', () => {
   })
 
   dispatch({
-    type: 'increment',
+    type: 'decrement',
   })
-
-  console.log(getState())
 
   function sleep(time: number) {
     return new Promise(resove => {
@@ -62,15 +61,26 @@ test('useStore', () => {
     })
   }
 
-  // const App = () => {
-  //   const count = useStore(S => S.count)
-  //   console.log('coutn:------------------', count)
-  //   // return <div>{count}</div>
-  //   return <span>..</span>
-  // }
+  const App = () => {
+    const count = useStore(S => S.count)
+    return <div>{count}</div>
+  }
 
-  // console.log(<App />)
+  const component = renderer.create(<App />)
+  const root = JSON.parse(JSON.stringify(component.toJSON()))
+  expect(root.type).toBe('div')
+  expect(root.children[0]).toBe('9')
 
-  // const component = renderer.create(<App />)
-  // expect(component.toJSON()).toBe('1')
+  dispatch({
+    type: 'decrement',
+  })
+
+  dispatch({
+    type: 'decrement',
+  })
+
+  console.log(component.toJSON())
+  // expect(component.toTree().children[0]).toBe('9')
+  // const app = shallow(<App />)
+  // expect(app.find('div').text()).toBe('9')
 })
