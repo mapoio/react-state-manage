@@ -3,33 +3,33 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="1.9.6"></a>
-## [1.9.6](https://github.com/forsigner/stamen/compare/v1.9.4...v1.9.6) (2019-04-25)
+## [1.9.6](https://github.com/mapoio/react-state-manage/compare/v1.9.4...v1.9.6) (2019-04-25)
 
 
 ### Bug Fixes
 
-* style lint ([8aa2989](https://github.com/forsigner/stamen/commit/8aa2989))
-* update state should run once ([95197aa](https://github.com/forsigner/stamen/commit/95197aa))
+* style lint ([8aa2989](https://github.com/mapoio/react-state-manage/commit/8aa2989))
+* update state should run once ([95197aa](https://github.com/mapoio/react-state-manage/commit/95197aa))
 
 
 
 <a name="1.9.4"></a>
-## [1.9.4](https://github.com/forsigner/stamen/compare/v1.9.2...v1.9.4) (2019-04-25)
+## [1.9.4](https://github.com/mapoio/react-state-manage/compare/v1.9.2...v1.9.4) (2019-04-25)
 
 
 ### Bug Fixes
 
-* build error ([471fb72](https://github.com/forsigner/stamen/commit/471fb72))
+* build error ([471fb72](https://github.com/mapoio/react-state-manage/commit/471fb72))
 
 
 
 <a name="1.9.2"></a>
-## [1.9.2](https://github.com/forsigner/stamen/compare/v2.1.2...v1.9.2) (2019-04-25)
+## [1.9.2](https://github.com/mapoio/react-state-manage/compare/v2.1.2...v1.9.2) (2019-04-25)
 
 
 ### Bug Fixes
 
-* state store reference ([15693e5](https://github.com/forsigner/stamen/commit/15693e5))
+* state store reference ([15693e5](https://github.com/mapoio/react-state-manage/commit/15693e5))
 
 
 

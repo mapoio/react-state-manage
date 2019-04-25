@@ -51,14 +51,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/forsigner/stamen.git"
+    "url": "git+ssh://git@github.com/mapoio/react-state-manage.git"
   },
-  "author": "forsigner",
+  "author": "mapoio",
   "license": "MIT",
   "bugs": {
-    "url": "https://.com/forsigner/stamen/issues"
+    "url": "https://github.com/mapoio/react-state-manage/issues"
   },
-  "homepage": "https://github.com/forsigner/stamen#README",
+  "homepage": "https://github.com/mapoio/react-state-manage#README",
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",

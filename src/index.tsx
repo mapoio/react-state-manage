@@ -22,11 +22,16 @@ const stamen = {
   // },
 }
 
-function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) {
+const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) => {
   const updaters: Array<Updater<S>> = []
 
-  function useStore<P>(selector: Selector<S, P>) {
+  const useStore = <P extends any>(selector: Selector<S, P>) => {
     const [state, setState] = useState(opt.state)
+
+    const update = (set: any, nextState: S): any => {
+      set(() => nextState)
+    }
+
     const updater = {
       update,
       set: setState,
@@ -40,14 +45,10 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       updaters.splice(updaters.indexOf(updater), 1)
     })
 
-    function update(set: any, nextState: S): any {
-      set(() => nextState)
-    }
-
     return selector(state)
   }
 
-  function dispatch<K extends any>(action: keyof (R & E) | ActionSelector<R, E>, payload?: K) {
+  const dispatch = <K extends any>(action: keyof (R & E) | ActionSelector<R, E>, payload?: K) => {
     const actionName = getActionName(action)
     if (opt.effects && opt.effects[actionName]) {
       return opt.effects[actionName](payload)
@@ -69,7 +70,7 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     }
   }
 
-  function getState(): S {
+  const getState = (): S => {
     return opt.state
   }
 
