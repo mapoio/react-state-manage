@@ -1,23 +1,10 @@
 import { useState } from 'react'
-import crossfetch from 'cross-fetch'
 
 import produce from 'immer'
 // import equal from 'fast-deep-equal'
 
-import { GraphQLClient } from 'gery'
 import { useMount, useUnmount, getActionName } from './util'
-import {
-  Opt,
-  Reducers,
-  Effects,
-  Selector,
-  ReducerFn,
-  ActionSelector,
-  Updater,
-  Result,
-  Variables,
-  Config,
-} from './typings'
+import { Opt, Reducers, Effects, Selector, ActionSelector, Updater, Config } from './typings'
 
 let config: Config = {
   rest: {
@@ -53,18 +40,7 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       updaters.splice(updaters.indexOf(updater), 1)
     })
 
-    function update(set: any, action: ReducerFn<S>, payload: any): any {
-      if (!action) return null
-
-      const nextState: S = produce<any>(opt.state, (draft: S) => {
-        action(draft, payload)
-      })
-
-      // TODO: prevent re-render
-      // if (equal(selector(storeState), selector(nextState))) return
-
-      opt.state = nextState
-
+    function update(set: any, nextState: S): any {
       set(() => nextState)
     }
 
@@ -77,73 +53,19 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       return opt.effects[actionName](payload)
     }
     if (!updaters.length) return
-
-    updaters.forEach(updater => {
-      if (opt.reducers) {
-        updater.update(updater.set, opt.reducers[actionName], payload)
-      }
-    })
-  }
-
-  function mutate(result: Result<any>, stateKey: string) {
-    const { loading, data, error } = result
-    updaters.forEach(updater => {
-      const nextState: S = produce<any>(opt.state, (draft: any) => {
-        draft[stateKey] = { loading, data, error }
+    const runAction = opt.reducers && opt.reducers[actionName]
+    if (runAction) {
+      const nextState: S = produce<any>(opt.state, (draft: S) => {
+        runAction(draft, payload)
       })
-
-      updater.set(() => {
-        opt.state = nextState
-        return nextState
+      // TODO: prevent re-render
+      // if (equal(selector(storeState), selector(nextState))) return
+      opt.state = nextState
+      updaters.forEach(updater => {
+        if (opt.reducers) {
+          updater.update(updater.set, nextState)
+        }
       })
-    })
-  }
-
-  function updateStore(stateKey: string, loading: boolean, data?: any, error?: any) {
-    mutate({ loading, data, error }, stateKey)
-  }
-
-  async function fetch(url: string, options?: any) {
-    const { stateKey } = options || ({} as any)
-    const { endpoint } = config.rest
-    const key = stateKey || url
-
-    updateStore(key, true)
-
-    try {
-      const res: any = await crossfetch(endpoint + url)
-      if (res.status >= 400) {
-        throw new Error('Bad response from server')
-      }
-      const data = await res.json()
-
-      updateStore(key, false, data)
-      return data
-    } catch (error) {
-      updateStore(key, false, undefined, error)
-      console.log('error:', error)
-
-      throw error
-    }
-  }
-
-  async function query(gqlStr: string, variables?: Variables, options?: any) {
-    const { stateKey } = options || ({} as any)
-    const { endpoint, headers } = config.graphql
-    const client = new GraphQLClient({ endpoint, headers })
-    const key = stateKey || gqlStr
-
-    updateStore(key, true)
-
-    try {
-      const data = await client.query(gqlStr, variables)
-      updateStore(key, false, data)
-      return data
-    } catch (error) {
-      updateStore(key, false, undefined, error)
-      console.log('error:', error)
-
-      throw error
     }
   }
 
@@ -151,8 +73,8 @@ function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     return opt.state
   }
 
-  return { useStore, dispatch, fetch, query, getState }
+  return { useStore, dispatch, getState }
 }
 
 export default stamen
-export { createStore, Result }
+export { createStore }

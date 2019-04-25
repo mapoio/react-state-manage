@@ -8,7 +8,7 @@ export interface Opt<S, R, E> {
 }
 
 export interface Updater<S> {
-  update: (set: any, action: ReducerFn<S>, payload: any) => any
+  update: (set: any, nextState: S) => any
   set: any
 }
 
