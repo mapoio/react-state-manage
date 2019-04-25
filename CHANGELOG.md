@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.9.4"></a>
+## [1.9.4](https://github.com/forsigner/stamen/compare/v1.9.2...v1.9.4) (2019-04-25)
+
+
+### Bug Fixes
+
+* build error ([471fb72](https://github.com/forsigner/stamen/commit/471fb72))
+
+
+
 <a name="1.9.2"></a>
 ## [1.9.2](https://github.com/forsigner/stamen/compare/v2.1.2...v1.9.2) (2019-04-25)
 
