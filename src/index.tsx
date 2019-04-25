@@ -1,29 +1,37 @@
 import { useState } from 'react'
 
 import produce from 'immer'
+import cloneDeep from 'clone-deep'
 // import equal from 'fast-deep-equal'
 
 import { useMount, useUnmount, getActionName } from './util'
-import { Opt, Reducers, Effects, Selector, ActionSelector, Updater } from './typings'
+import {
+  Opt,
+  Reducers,
+  Effects,
+  Selector,
+  ActionSelector,
+  Updater,
+  beforeDispatchFunc,
+  afterDispatchFunc,
+  Config,
+} from './typings'
 
-// let config: Config = {
-//   rest: {
-//     endpoint: '',
-//   },
-//   graphql: {
-//     endpoint: '',
-//     headers: {},
-//   },
-// }
+let config: Config = {
+  beforeDispatchs: [],
+  afterDispatchs: [],
+}
 
-const stamen = {
-  // init: (initConfig: Config) => {
-  //   config = initConfig
-  // },
+const store = {
+  init: (initConfig: Config) => {
+    config = initConfig
+  },
 }
 
 const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) => {
   const updaters: Array<Updater<S>> = []
+  const beforeDispatchs: beforeDispatchFunc[] = config.beforeDispatchs
+  const afterDispatchs: afterDispatchFunc[] = config.afterDispatchs
 
   const useStore = <P extends any>(selector: Selector<S, P>) => {
     const [state, setState] = useState(opt.state)
@@ -49,6 +57,7 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
   }
 
   const dispatch = <K extends any>(action: keyof (R & E) | ActionSelector<R, E>, payload?: K) => {
+    beforeDispatchs.forEach(func => func(cloneDeep(opt.state), action, payload))
     const actionName = getActionName(action)
     if (opt.effects && opt.effects[actionName]) {
       return opt.effects[actionName](payload)
@@ -68,6 +77,7 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
         }
       })
     }
+    afterDispatchs.forEach(func => func(cloneDeep(opt.state), action, payload))
   }
 
   const getState = (): S => {
@@ -77,5 +87,5 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
   return { useStore, dispatch, getState }
 }
 
-export default stamen
+export default store
 export { createStore }

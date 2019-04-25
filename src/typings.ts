@@ -12,6 +12,18 @@ export interface Updater<S> {
   set: any
 }
 
+export type beforeDispatchFunc = <S, R, E, P extends any>(
+  state: S,
+  action: keyof (R & E) | ActionSelector<R, E>,
+  payload?: P,
+) => void
+
+export type afterDispatchFunc = <S, R, E, P extends any>(
+  state: S,
+  action: keyof (R & E) | ActionSelector<R, E>,
+  payload?: P,
+) => void
+
 export type ActionSelector<R, E> = (action: R & E) => any
 
 export type ActFn<R> = (action: R, payload?: any) => void
@@ -41,19 +53,6 @@ export interface Variables {
 }
 
 export interface Config {
-  rest: {
-    endpoint: string
-    body?: {
-      [key: string]: string
-    }
-    headers?: {
-      [key: string]: string
-    }
-  }
-  graphql: {
-    endpoint: string
-    headers?: {
-      [key: string]: string
-    }
-  }
+  beforeDispatchs: beforeDispatchFunc[]
+  afterDispatchs: afterDispatchFunc[]
 }
