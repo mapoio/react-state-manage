@@ -4,22 +4,22 @@ import produce from 'immer'
 // import equal from 'fast-deep-equal'
 
 import { useMount, useUnmount, getActionName } from './util'
-import { Opt, Reducers, Effects, Selector, ActionSelector, Updater, Config } from './typings'
+import { Opt, Reducers, Effects, Selector, ActionSelector, Updater } from './typings'
 
-let config: Config = {
-  rest: {
-    endpoint: '',
-  },
-  graphql: {
-    endpoint: '',
-    headers: {},
-  },
-}
+// let config: Config = {
+//   rest: {
+//     endpoint: '',
+//   },
+//   graphql: {
+//     endpoint: '',
+//     headers: {},
+//   },
+// }
 
 const stamen = {
-  init: (initConfig: Config) => {
-    config = initConfig
-  },
+  // init: (initConfig: Config) => {
+  //   config = initConfig
+  // },
 }
 
 function createStore<S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R, E>) {
