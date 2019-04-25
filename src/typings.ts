@@ -12,17 +12,9 @@ export interface Updater<S> {
   set: any
 }
 
-export type beforeDispatchFunc = <S, R, E, P extends any>(
-  state: S,
-  action: keyof (R & E) | ActionSelector<R, E>,
-  payload?: P,
-) => void
+export type beforeDispatchFunc = <S, R, P extends any>(state: S, action: R, payload?: P) => void
 
-export type afterDispatchFunc = <S, R, E, P extends any>(
-  state: S,
-  action: keyof (R & E) | ActionSelector<R, E>,
-  payload?: P,
-) => void
+export type afterDispatchFunc = <S, R, P extends any>(state: S, action: R, payload?: P) => void
 
 export type ActionSelector<R, E> = (action: R & E) => any
 
