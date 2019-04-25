@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.9.2"></a>
+## [1.9.2](https://github.com/forsigner/stamen/compare/v2.1.2...v1.9.2) (2019-04-25)
+
+
+### Bug Fixes
+
+* state store reference ([15693e5](https://github.com/forsigner/stamen/commit/15693e5))
+
+
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/mapoio/react-state-manage/compare/v2.1.1...v2.1.2) (2019-01-25)
 
