@@ -16,6 +16,13 @@ export type beforeDispatchFunc = <S, R, P extends any>(state: S, action: R, payl
 
 export type afterDispatchFunc = <S, R, P extends any>(state: S, action: R, payload?: P) => void
 
+export type beforeUpdateFunc = <S, R, P extends any>(
+  prevState: S,
+  nextState: S,
+  action: R,
+  payload?: P,
+) => void
+
 export type ActionSelector<R, E> = (action: R & E) => any
 
 export type ActFn<R> = (action: R, payload?: any) => void
@@ -47,4 +54,5 @@ export interface Variables {
 export interface Config {
   beforeDispatchs: beforeDispatchFunc[]
   afterDispatchs: afterDispatchFunc[]
+  beforeUpdates: beforeUpdateFunc[]
 }

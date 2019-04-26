@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import produce from 'immer'
 import cloneDeep from 'clone-deep'
-// import equal from 'fast-deep-equal'
+import equal from 'fast-deep-equal'
 
 import { useMount, useUnmount, getActionName } from './util'
 import {
@@ -15,16 +15,18 @@ import {
   beforeDispatchFunc,
   afterDispatchFunc,
   Config,
+  beforeUpdateFunc,
 } from './typings'
 
-let config: Config = {
+const config: Config = {
   beforeDispatchs: [],
   afterDispatchs: [],
+  beforeUpdates: [],
 }
 
 const store = {
-  init: (initConfig: Config) => {
-    config = initConfig
+  init: (initConfig: Partial<Config>) => {
+    Object.assign(config, initConfig)
   },
 }
 
@@ -32,6 +34,8 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
   const updaters: Array<Updater<S>> = []
   const beforeDispatchs: beforeDispatchFunc[] = config.beforeDispatchs
   const afterDispatchs: afterDispatchFunc[] = config.afterDispatchs
+  const beforeUpdates: beforeUpdateFunc[] = config.beforeUpdates
+  let prevState: S = cloneDeep(opt.state)
 
   const useStore = <P extends any>(selector: Selector<S, P>) => {
     const [state, setState] = useState(opt.state)
@@ -57,8 +61,8 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
   }
 
   const dispatch = <K extends any>(action: keyof (R & E) | ActionSelector<R, E>, payload?: K) => {
-    beforeDispatchs.forEach(func => func(cloneDeep(opt.state), action, payload))
     const actionName = getActionName(action)
+    beforeDispatchs.forEach(func => func(cloneDeep(opt.state), actionName, payload))
     if (opt.effects && opt.effects[actionName]) {
       return opt.effects[actionName](payload)
     }
@@ -68,16 +72,20 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       const nextState: S = produce<any>(opt.state, (draft: S) => {
         runAction(draft, payload)
       })
-      // TODO: prevent re-render
-      // if (equal(selector(storeState), selector(nextState))) return
+      if (equal(opt.state, nextState)) return
+
+      prevState = cloneDeep(opt.state)
+
+      beforeUpdates.forEach(func => {
+        func(cloneDeep(prevState), cloneDeep(nextState), actionName, payload)
+      })
+
       opt.state = nextState
       updaters.forEach(updater => {
-        if (opt.reducers) {
-          updater.update(updater.set, nextState)
-        }
+        updater.update(updater.set, nextState)
       })
     }
-    afterDispatchs.forEach(func => func(cloneDeep(opt.state), action, payload))
+    afterDispatchs.forEach(func => func(cloneDeep(opt.state), actionName, payload))
   }
 
   const getState = (): S => {
