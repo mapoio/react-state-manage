@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/mapoio/react-state-manage/compare/v1.10.0...v1.11.0) (2019-04-26)
+
+
+### Features
+
+* add beforeUpdates hooks ([875fe95](https://github.com/mapoio/react-state-manage/commit/875fe95))
+
+
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/mapoio/react-state-manage/compare/v1.9.6...v1.10.0) (2019-04-25)
 
