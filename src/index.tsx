@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import produce from 'immer'
 import cloneDeep from 'clone-deep'
-import equal from 'fast-deep-equal'
+// import equal from 'fast-deep-equal'
 
 import { useMount, useUnmount, getActionName } from './util'
 import {
@@ -72,7 +72,7 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
       const nextState: S = produce<any>(opt.state, (draft: S) => {
         runAction(draft, payload)
       })
-      if (equal(opt.state, nextState)) return
+      // if (equal(opt.state, nextState)) return
 
       prevState = cloneDeep(opt.state)
 
