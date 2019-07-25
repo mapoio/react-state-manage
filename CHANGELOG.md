@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.4](https://github.com/mapoio/react-state-manage/compare/v1.11.3...v1.11.4) (2019-07-25)
+
+
+### Bug Fixes
+
+* change npm File ([d6b4e51](https://github.com/mapoio/react-state-manage/commit/d6b4e51))
+
+
+
 ## [1.11.3](https://github.com/mapoio/react-state-manage/compare/v1.11.2...v1.11.3) (2019-07-25)
 
 
