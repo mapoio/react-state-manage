@@ -4,10 +4,11 @@
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "typings": "dist/index.d.ts",
+  "typings": "./index.d.ts",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "index.d.ts"
   ],
   "scripts": {
     "clean:dist": "rimraf dist/*",
@@ -80,6 +81,7 @@
     "react-test-renderer": "16.8.3",
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
+    "rollup-plugin-dts": "^1.1.5",
     "rollup-plugin-typescript2": "^0.19.3",
     "standard-version": "^5.0.1",
     "terser": "^3.16.1",
