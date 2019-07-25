@@ -27,6 +27,6 @@ export default [{
   ]
 }, {
   input: 'dist/index.d.ts',
-  output: [{ file: pkg.typings, format: 'cjs' }],
+  output: [{ file: pkg.typings, format: 'es' }],
   plugins: [dts()]
 }]
