@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.3](https://github.com/mapoio/react-state-manage/compare/v1.11.2...v1.11.3) (2019-07-25)
+
+
+### Bug Fixes
+
+* add index.d.ts ([ed235a2](https://github.com/mapoio/react-state-manage/commit/ed235a2))
+
+
+
 ## [1.11.2](https://github.com/mapoio/react-state-manage/compare/v1.11.1...v1.11.2) (2019-07-25)
 
 
