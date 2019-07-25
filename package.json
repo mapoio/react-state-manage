@@ -1,8 +1,10 @@
 {
   "name": "react-state-manage",
-  "version": "1.11.5",
+  "version": "1.11.4",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
   "typings": "./index.d.ts",
   "files": [
     "dist",
