@@ -11,12 +11,6 @@ export default [{
       format: 'cjs',
       exports: 'named',
       sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      exports: 'named',
-      sourcemap: true
     }
   ],
   external: ['immer', 'fast-deep-equal', 'gery', 'react', 'react-dom'],
@@ -27,6 +21,6 @@ export default [{
   ]
 }, {
   input: 'dist/index.d.ts',
-  output: [{ file: pkg.typings, format: 'es' }],
+  output: [{ file: pkg.typings, format: 'cjs' }],
   plugins: [dts()]
 }]
