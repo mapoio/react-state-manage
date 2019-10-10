@@ -28,7 +28,6 @@ test('useStore', () => {
   })
 
   console.log(useStore)
-  console.log('test')
 
   // const App = () => {
   //   const count = useStore(S => S.count)
