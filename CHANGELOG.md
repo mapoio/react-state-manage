@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.4](https://github.com/mapoio/react-state-manage/compare/v1.13.3...v1.13.4) (2019-10-10)
+
+
+### Bug Fixes
+
+* change github workflow ([3a80a1e](https://github.com/mapoio/react-state-manage/commit/3a80a1e))
+* Merge pull request [#20](https://github.com/mapoio/react-state-manage/issues/20) from mapoio/dependabot/npm_and_yarn/mixin-deep-1.3.2 ([ecd3320](https://github.com/mapoio/react-state-manage/commit/ecd3320))
+
+
+
 ## [1.13.3](https://github.com/mapoio/react-state-manage/compare/v1.13.2...v1.13.3) (2019-10-10)
 
 
