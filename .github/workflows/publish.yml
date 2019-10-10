@@ -19,6 +19,7 @@ jobs:
       - run: npm install
       - run: npm publish
         env:
+          NPM_CONFIG_USERCONFIG: ${{ secrets.NPM_CONFIG_USERCONFIG }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v1
         with:
