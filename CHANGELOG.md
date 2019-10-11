@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.21](https://github.com/mapoio/react-state-manage/compare/v1.13.20...v1.13.21) (2019-10-11)
+
+
+### Bug Fixes
+
+* chang package name ([cdd8d2a](https://github.com/mapoio/react-state-manage/commit/cdd8d2a))
+
+
+
 ## [1.13.20](https://github.com/mapoio/react-state-manage/compare/v1.13.19...v1.13.20) (2019-10-11)
 
 
