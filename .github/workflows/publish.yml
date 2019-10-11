@@ -24,10 +24,9 @@ jobs:
       - run: npm publish
       - uses: actions/setup-node@v1
         with:
-          scope: '@mapoio'
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm config set @mapoio:registry https://npm.pkg.github.com
-      - run: npm config set '//npm.pkg.github.com/:_authToken' "${NODE_AUTH_TOKEN}"
+      - run: npm config set registry https://npm.pkg.github.com/mapoio
+      - run: npm config set '//npm.pkg.github.com/mapoio/:_authToken' "${NODE_AUTH_TOKEN}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GPG_TOKEN }}
-      - run: npm publish --@mapoio:registry=https://npm.pkg.github.com/
+      - run: npm publish
