@@ -26,7 +26,7 @@ jobs:
         with:
           registry-url: 'https://npm.pkg.github.com'
       - run: npm config set registry https://npm.pkg.github.com/mapoio
-      - run: 'sed ''s/ame": "react-state-manage/name": "@mapoio/react-state-manage/g'' package.json'
+      - run: 'sed ''s/ame": "react-state-manage/ame": "@mapoio\/react-state-manage/g'' package.json'
       - run: npm config set '//npm.pkg.github.com/:_authToken' "${NODE_AUTH_TOKEN}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GPG_TOKEN }}
