@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.16](https://github.com/mapoio/react-state-manage/compare/v1.13.15...v1.13.16) (2019-10-11)
+
+
+### Bug Fixes
+
+* change github package publish ([047583c](https://github.com/mapoio/react-state-manage/commit/047583c))
+
+
+
 ## [1.13.15](https://github.com/mapoio/react-state-manage/compare/v1.13.14...v1.13.15) (2019-10-11)
 
 
