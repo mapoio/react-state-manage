@@ -1,5 +1,5 @@
 {
-  "name": "react-state-manage",
+  "name": "@mapoio/react-state-manage",
   "version": "1.13.20",
   "description": "",
   "main": "dist/index.js",
@@ -103,7 +103,7 @@
     "fast-deep-equal": "^2.0.1",
     "immer": "^2.1.0"
   },
-  "npmName": "react-state-manage",
+  "npmName": "@mapoio/react-state-manage",
   "npmFileMap": [
     {
       "basePath": "/dist/",
