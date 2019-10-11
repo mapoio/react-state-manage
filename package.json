@@ -1,6 +1,6 @@
 {
   "name": "@mapoio/react-state-manage",
-  "version": "1.13.21",
+  "version": "1.13.22",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
