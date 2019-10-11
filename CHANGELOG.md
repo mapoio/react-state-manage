@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.17](https://github.com/mapoio/react-state-manage/compare/v1.13.16...v1.13.17) (2019-10-11)
+
+
+### Bug Fixes
+
+* github package change ([bee3d47](https://github.com/mapoio/react-state-manage/commit/bee3d47))
+
+
+
 ## [1.13.16](https://github.com/mapoio/react-state-manage/compare/v1.13.15...v1.13.16) (2019-10-11)
 
 
