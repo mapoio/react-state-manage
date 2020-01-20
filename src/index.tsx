@@ -60,6 +60,24 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     return selector(state)
   }
 
+  const subscribe = (listener: () => void) => {
+    if (typeof listener !== 'function') {
+      throw new Error('Expected the listener to be a function.')
+    }
+    const update = (set: any, nextState: S): any => {
+      set(() => nextState)
+    }
+    let isSubscribed = true
+    const updater = { update, set: listener }
+    updaters.push(updater)
+    return () => {
+      if (!isSubscribed) return
+      isSubscribed = false
+      const index = updaters.indexOf(updater)
+      updaters.splice(index, 1)
+    }
+  }
+
   const dispatch = <K extends any>(action: keyof (R & E) | ActionSelector<R, E>, payload?: K) => {
     const actionName = getActionName(action)
     beforeDispatchs.forEach(func => func(cloneDeep(opt.state), actionName, payload))
@@ -92,7 +110,42 @@ const createStore = <S, R extends Reducers<S>, E extends Effects>(opt: Opt<S, R,
     return opt.state
   }
 
-  return { useStore, dispatch, getState }
+  function observable() {
+    const outerSubscribe = subscribe
+    return {
+      subscribe(observer: unknown) {
+        if (typeof observer !== 'object' || observer === null) {
+          throw new TypeError('Expected the observer to be an object.')
+        }
+
+        function observeState() {
+          const observerAsObserver = observer
+          // @ts-ignore
+          if (observerAsObserver.next) {
+            // @ts-ignore
+            observerAsObserver.next(getState())
+          }
+        }
+
+        observeState()
+        const unsubscribe = outerSubscribe(observeState)
+        return { unsubscribe }
+      },
+      // @ts-ignore
+      [$$observable]() {
+        return this
+      },
+    }
+  }
+
+  return {
+    useStore,
+    dispatch,
+    getState,
+    subscribe,
+    // @ts-ignore
+    [$$observable]: observable,
+  }
 }
 
 export default store
