@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.14.0](https://github.com/mapoio/react-state-manage/compare/v1.13.22...v1.14.0) (2020-01-20)
+
+
+### Features
+
+* Add subscribe ([f86245f](https://github.com/mapoio/react-state-manage/commit/f86245f))
+
+
+
 ## [1.13.22](https://github.com/mapoio/react-state-manage/compare/v1.13.21...v1.13.22) (2019-10-11)
 
 
