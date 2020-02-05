@@ -1,5 +1,5 @@
 {
-  "name": "@mapoio/react-state-manage",
+  "name": "react-state-manage",
   "version": "1.14.0",
   "description": "",
   "main": "dist/index.js",

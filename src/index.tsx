@@ -18,6 +18,9 @@ import {
   beforeUpdateFunc,
 } from './typings'
 
+const $$observable = (() =>
+  (typeof Symbol === 'function' && (Symbol as any).observable) || '@@observable')()
+
 const config: Config = {
   beforeDispatchs: [],
   afterDispatchs: [],
